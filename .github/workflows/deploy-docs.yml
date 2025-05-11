@@ -28,6 +28,9 @@ jobs:
         with:
           node-version: '18'
           cache: yarn
+      
+      - name: Enable Corepack
+        run: corepack enable  # 启用 Corepack
 
       - name: Install Deps
         run: yarn install --frozen-lockfile
