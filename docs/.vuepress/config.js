@@ -137,5 +137,9 @@ export default defineUserConfig({
     }),
   ],
 
+  head: [
+    ['link', { rel: 'icon', href: '/favicon.png' }]
+  ],
+
   bundler: viteBundler(),
 })
