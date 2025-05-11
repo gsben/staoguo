@@ -27,16 +27,19 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '18'
-          cache: yarn
       
-      - name: Remove global Yarn installation
-        run: npm uninstall -g yarn  # 移除全局 Yarn
+      - name: Uninstall global Yarn
+        run: |
+          sudo npm uninstall -g yarn  # 卸载全局的 Yarn
 
-      - name: Enable Corepack
-        run: corepack enable  # 启用 Corepack
+      - name: Enable Corepack and install Yarn 3.x
+        run: |
+          corepack enable  # 启用 Corepack
+          corepack prepare yarn@3.6.3 --activate  # 激活指定版本的 Yarn
+          yarn --version  # 输出当前 Yarn 版本，确保是 3.6.3
 
-      - name: Install dependencies using Corepack-managed Yarn
-        run: corepack yarn install  # 强制使用 Corepack 管理的 yarn 安装依赖
+      - name: Install dependencies using Yarn
+        run: yarn install  # 使用正确版本的 Yarn 安装依赖
 
       - name: Build Docs
         env:
