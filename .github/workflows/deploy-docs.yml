@@ -32,13 +32,11 @@ jobs:
       - name: Enable Corepack
         run: corepack enable  # 启用 Corepack
 
-      - name: Verify Corepack and Yarn Version
-        run: |
-          corepack --version  # 确保 Corepack 已启用
-          yarn --version  # 检查正在使用的 Yarn 版本
+      - name: Use specific Yarn version via Corepack
+        run: corepack prepare yarn@3.6.3 --activate  # 激活指定版本的 Yarn
 
-      - name: Install dependencies with Corepack
-        run: yarn install  # 使用 Corepack 管理的 yarn 安装依赖
+      - name: Install dependencies
+        run: yarn install  # 使用指定版本的 Yarn 安装依赖
 
       - name: Build Docs
         env:
