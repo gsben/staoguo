@@ -3,4 +3,5 @@ docs/.vuepress/.temp
 docs/.vuepress/dist
 
 node_modules
-.yarn
+.yarn/cache
+.yarn/install-state.gz
